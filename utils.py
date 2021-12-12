@@ -364,55 +364,9 @@ def neutralize(df,
                         index=df.index)
 
 
-def neutralize_series(series, by, proportion=1.0):
-    scores = series.values.reshape(-1, 1)
-    exposures = by.values.reshape(-1, 1)
-
-    # this line makes series neutral to a constant column so that it's centered and for sure gets corr 0 with exposures
-    exposures = np.hstack(
-        (exposures,
-         np.array([np.mean(series)] * len(exposures)).reshape(-1, 1)))
-
-    correction = proportion * (exposures.dot(
-        np.linalg.lstsq(exposures, scores, rcond=None)[0]))
-    corrected_scores = scores - correction
-    neutralized = pd.Series(corrected_scores.ravel(), index=series.index)
-    return neutralized
-
-
 def unif(df):
     x = (df.rank(method="first") - 0.5) / len(df)
     return pd.Series(x, index=df.index)
-
-
-def get_feature_neutral_mean(df, prediction_col, target_col):
-    feature_cols = [c for c in df.columns if c.startswith("feature")]
-    df.loc[:, "neutral_sub"] = neutralize(df, [prediction_col],
-                                          feature_cols)[prediction_col]
-    scores = df.groupby("era").apply(
-        lambda x: (unif(x["neutral_sub"]).corr(x[target_col]))).mean()
-    return np.mean(scores)
-
-
-def fast_score_by_date(df, columns, target, tb=None, era_col="era"):
-    unique_eras = df[era_col].unique()
-    computed = []
-    for u in unique_eras:
-        df_era = df[df[era_col] == u]
-        era_pred = np.float64(df_era[columns].values.T)
-        era_target = np.float64(df_era[target].values.T)
-
-        if tb is None:
-            ccs = np.corrcoef(era_target, era_pred)[0, 1:]
-        else:
-            tbidx = np.argsort(era_pred, axis=1)
-            tbidx = np.concatenate([tbidx[:, :tb], tbidx[:, -tb:]], axis=1)
-            ccs = [np.corrcoef(era_target[tmpidx], tmppred[tmpidx])[0, 1] for tmpidx, tmppred in zip(tbidx, era_pred)]
-            ccs = np.array(ccs)
-
-        computed.append(ccs)
-
-    return pd.DataFrame(np.array(computed), columns=columns, index=df[era_col].unique())
 
 
 def validation_metrics(validation_data, pred_cols, target_col):
