@@ -19,7 +19,7 @@ from utils import (
     TARGET_OPTIMUM_PARAMS
 )
 
-TARGET_COL = TARGET_COLUMNS['janet60']
+TARGET_COL = TARGET_COLUMNS['thomas60']
 
 start = time.time()
 
@@ -137,8 +137,8 @@ model_to_submit = f"preds_{model_name}_neutral_riskiest_50"
 # rename best model to "prediction" and rank from 0 to 1 to meet upload requirements
 validation_data["prediction"] = validation_data[model_to_submit].rank(pct=True)
 tournament_data["prediction"] = tournament_data[model_to_submit].rank(pct=True)
-validation_data["prediction"].to_csv(f"validation_predictions_{current_round}.csv")
-tournament_data["prediction"].to_csv(f"tournament_predictions_{current_round}.csv")
+validation_data["prediction"].to_csv(f"prediction_files/validation_predictions_{current_round}_{TARGET_COL}.csv")
+tournament_data["prediction"].to_csv(f"prediction_files/tournament_predictions_{current_round}_{TARGET_COL}.csv")
 
 # get some stats about each of our models to compare...
 # fast_mode=True so that we skip some of the stats that are slower to calculate
