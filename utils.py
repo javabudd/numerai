@@ -226,13 +226,13 @@ TARGET_OPTIMUM_PARAMS = {
     },
     TARGET_COLUMNS['thomas20']: {
         "boosting_type": "goss",
-        "n_estimators": 1978,
-        "learning_rate": 0.04378455468413633,
-        "num_leaves": 5,
-        "max_depth": 5,
-        "feature_fraction": 0.11101377120763281,
-        "bagging_fraction": 0.15678624159723772,
-        "min_data_in_leaf": 1201
+        "n_estimators": 1956,
+        "learning_rate": 0.017314775722883955,
+        "num_leaves": 34,
+        "max_depth": 68,
+        "feature_fraction": 0.19993147115415724,
+        "bagging_fraction": 0.06766978813067094,
+        "min_data_in_leaf": 672
     },
     TARGET_COLUMNS['thomas60']: {
         "boosting_type": "goss",

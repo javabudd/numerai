@@ -15,7 +15,7 @@ from utils import (
     TARGET_COLUMNS
 )
 
-TARGET_COL = TARGET_COLUMNS['target']
+TARGET_COL = TARGET_COLUMNS['arthur20']
 
 napi = NumerAPI()
 
@@ -57,17 +57,19 @@ model_name = f"model_target"
 
 
 def objective(optuna_trial: optuna.trial):
-    max_depth = optuna_trial.suggest_int("max_depth", 4, 6, log=True)
+    max_depth = optuna_trial.suggest_int("max_depth", 2, 50, log=True)
 
     params = {
+        "objective": optuna_trial.suggest_categorical('objective', ['regression', 'binary']),
         "boosting_type": "goss",
         "n_estimators": optuna_trial.suggest_int("n_estimators", 1800, 2000, log=True),
         "learning_rate": optuna_trial.suggest_float("learning_rate", .01, .1, log=True),
         "max_depth": max_depth,
-        "num_leaves": optuna_trial.suggest_int("num_leaves", 4, 2 ^ max_depth, log=True),
+        "num_leaves": optuna_trial.suggest_int("num_leaves", 2, 2 ^ max_depth, log=True),
         "feature_fraction": optuna_trial.suggest_float("feature_fraction ", .001, 1, log=True),
         "bagging_fraction": optuna_trial.suggest_float("bagging_fraction  ", .001, 1, log=True),
-        "min_data_in_leaf": optuna_trial.suggest_int("min_data_in_leaf", 100, 9999, log=True)
+        "min_data_in_leaf": optuna_trial.suggest_int("min_data_in_leaf", 100, 9999, log=True),
+        "lambda_l1": optuna_trial.suggest_float("lambda_l1", 1e-8, 10.0, log=True),
     }
 
     model = LGBMRegressor(**params)
