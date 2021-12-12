@@ -61,7 +61,7 @@ riskiest_features = get_biggest_change_features(all_feature_corrs, 50)
 # "garbage collection" (gc) gets rid of unused data and frees up memory
 gc.collect()
 
-model_name = f"model_target"
+model_name = f"model_{TARGET_COL}"
 print(f"Checking for existing model '{model_name}'")
 model = load_model(model_name)
 if not model:
