@@ -204,25 +204,30 @@ TARGET_OPTIMUM_PARAMS = {
         "bagging_fraction": 0.15678624159723772,
         "min_data_in_leaf": 1201
     },
-    TARGET_COLUMNS['arthur60']: {
+    TARGET_COLUMNS['arthur20']: {
         "boosting_type": "goss",
-        "n_estimators": 1978,
-        "learning_rate": 0.04378455468413633,
+        "objective": "regression",
+        "n_estimators": 1975,
+        "learning_rate": 0.08136245681492366,
         "num_leaves": 5,
-        "max_depth": 5,
-        "feature_fraction": 0.11101377120763281,
-        "bagging_fraction": 0.15678624159723772,
-        "min_data_in_leaf": 1201
+        "max_depth": 10,
+        "feature_fraction": 0.10285424138031136,
+        "bagging_fraction": 0.02998509136892534,
+        "min_data_in_leaf": 265,
+        "lambda_l1": 7.606687251778586e-05,
+        "lambda_l2": 0.05439351914172123
     },
     TARGET_COLUMNS['arthur60']: {
         "boosting_type": "goss",
-        "n_estimators": 1978,
-        "learning_rate": 0.04378455468413633,
-        "num_leaves": 5,
-        "max_depth": 5,
-        "feature_fraction": 0.11101377120763281,
-        "bagging_fraction": 0.15678624159723772,
-        "min_data_in_leaf": 1201
+        "objective": "regression",
+        "n_estimators": 1986,
+        "learning_rate": 0.015860118962803368,
+        "num_leaves": 18,
+        "max_depth": 46,
+        "feature_fraction": 0.14782041331534704,
+        "bagging_fraction": 0.011526112001252054,
+        "min_data_in_leaf": 5165,
+        "lambda_l1": 0.0353245861233883
     },
     TARGET_COLUMNS['thomas20']: {
         "boosting_type": "goss",

@@ -44,6 +44,8 @@ if model_selection_loop:
         TARGET_COLUMNS['target'],
         TARGET_COLUMNS['janet60'],
         TARGET_COLUMNS['thomas60'],
+        TARGET_COLUMNS['arthur20'],
+        TARGET_COLUMNS['arthur60']
     ]
 
     # all the possible features to train on
