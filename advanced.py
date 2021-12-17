@@ -42,10 +42,13 @@ if model_selection_loop:
 
     targets = [
         TARGET_COLUMNS['target'],
+        TARGET_COLUMNS['nomi20'],
+        TARGET_COLUMNS['nomi60'],
         TARGET_COLUMNS['janet60'],
-        TARGET_COLUMNS['thomas60'],
         TARGET_COLUMNS['arthur20'],
-        TARGET_COLUMNS['arthur60']
+        TARGET_COLUMNS['arthur60'],
+        TARGET_COLUMNS['thomas20'],
+        TARGET_COLUMNS['thomas60'],
     ]
 
     # all the possible features to train on
