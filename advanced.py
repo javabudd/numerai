@@ -44,6 +44,7 @@ if model_selection_loop:
         TARGET_COLUMNS['target'],
         TARGET_COLUMNS['nomi20'],
         TARGET_COLUMNS['nomi60'],
+        TARGET_COLUMNS['jerome20'],
         TARGET_COLUMNS['janet60'],
         TARGET_COLUMNS['arthur20'],
         TARGET_COLUMNS['arthur60'],
