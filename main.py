@@ -46,7 +46,8 @@ with open("features.json", "r") as f:
 features = feature_metadata["feature_sets"]["small"]
 numerapi_models = numerai_api.get_models()
 
-for target_column in TARGET_COLUMNS:
+for target_key in TARGET_COLUMNS.keys():
+    target_column = TARGET_COLUMNS[target_key]
     # read in just those features along with era and target columns
     read_columns = features + [ERA_COL, DATA_TYPE_COL, target_column]
     training_data = pd.read_parquet('training_data.parquet', columns=read_columns)
@@ -157,12 +158,14 @@ for target_column in TARGET_COLUMNS:
 
     print(f'done in {(time.time() - start) / 60} mins')
 
-    model_name = 'jbenaducci_' + target_column
+    model_name = 'jbenaducci_' + target_key
 
     try:
         numerai_api.upload_predictions(
             prediction_csv_path,
             model_id=numerapi_models[model_name]
         )
-    except ValueError as e:
+    except ValueError:
+        pass
+    except KeyError:
         pass
