@@ -47,6 +47,15 @@ features = feature_metadata["feature_sets"]["small"]
 numerapi_models = numerai_api.get_models()
 
 for target_key in TARGET_COLUMNS.keys():
+    numerai_model_name = 'jbenaducci_' + target_key
+    numerai_model_id = numerapi_models[numerai_model_name]
+
+    try:
+        numerai_api.submission_status(numerai_model_id)
+        continue
+    except TypeError:
+        pass
+
     target_column = TARGET_COLUMNS[target_key]
     # read in just those features along with era and target columns
     read_columns = features + [ERA_COL, DATA_TYPE_COL, target_column]
@@ -158,13 +167,11 @@ for target_key in TARGET_COLUMNS.keys():
 
     print(f'done in {(time.time() - start) / 60} mins')
 
-    model_name = 'jbenaducci_' + target_key
-
     try:
         numerai_api.upload_predictions(
             prediction_csv_path,
             tournament=8,
-            model_id=numerapi_models[model_name],
+            model_id=numerai_model_id,
             version=2
         )
     except ValueError:
