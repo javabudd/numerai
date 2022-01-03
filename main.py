@@ -163,7 +163,9 @@ for target_key in TARGET_COLUMNS.keys():
     try:
         numerai_api.upload_predictions(
             prediction_csv_path,
-            model_id=numerapi_models[model_name]
+            tournament=8,
+            model_id=numerapi_models[model_name],
+            version=2
         )
     except ValueError:
         pass
