@@ -50,11 +50,8 @@ for target_key in TARGET_COLUMNS.keys():
     numerai_model_name = 'jbenaducci_' + target_key
     numerai_model_id = numerapi_models[numerai_model_name]
 
-    try:
-        numerai_api.submission_status(numerai_model_id)
+    if numerai_api.submission_status(numerai_model_id) is not None:
         continue
-    except TypeError:
-        pass
 
     target_column = TARGET_COLUMNS[target_key]
     # read in just those features along with era and target columns
