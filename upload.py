@@ -11,9 +11,9 @@ api = NumerAPI(public_id=KEY, secret_key=SECRET)
 models = api.get_models()
 
 model_id = None
-for k, v in models:
-    if k == desired_model:
-        model_id = v
+for key in models.keys():
+    if key == desired_model:
+        model_id = models[key]
 
         break
 
