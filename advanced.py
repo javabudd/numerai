@@ -43,13 +43,14 @@ if model_selection_loop:
     targets = [
         TARGET_COLUMNS['target'],
         TARGET_COLUMNS['nomi20'],
-        TARGET_COLUMNS['nomi60'],
+        TARGET_COLUMNS['ben60'],
         TARGET_COLUMNS['jerome20'],
         TARGET_COLUMNS['jerome60'],
+        TARGET_COLUMNS['alan60'],
         TARGET_COLUMNS['janet20'],
         TARGET_COLUMNS['janet60'],
-        TARGET_COLUMNS['arthur20'],
-        TARGET_COLUMNS['arthur60'],
+        TARGET_COLUMNS['paul20'],
+        TARGET_COLUMNS['paul60'],
         TARGET_COLUMNS['thomas20'],
         TARGET_COLUMNS['thomas60'],
     ]
